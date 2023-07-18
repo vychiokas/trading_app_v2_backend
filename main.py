@@ -1,17 +1,13 @@
-from typing import List
+from fastapi import Depends, FastAPI
 
-from fastapi import FastAPI
 
-from schemas.account_schemas import AccountCreate
+from router.router import api_router
+
+from database.base import Base
+from database.db import engine
+
+
+Base.metadata.create_all(bind=engine)
+
 app = FastAPI()
-
-
-@app.post("/users/", response_model=AccountCreate)
-def create_user(account: AccountCreate):
-    return account.model_dump()
-
-
-@app.get("/users/", response_model=List[AccountCreate])
-def get_all_users():
-    return [AccountCreate.Config.json_schema_extra["example"]]
-
+app.include_router(api_router, prefix="/api/v1")

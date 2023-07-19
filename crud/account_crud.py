@@ -17,7 +17,9 @@ def get_accounts(db: Session):
     return db.query(Account).all()
 
 
-def create_account(db: Session, account: schemas.account_schemas.AccountCreate):
+def create_account(
+    db: Session, account: schemas.account_schemas.AccountCreate
+):
     fake_hashed_password = account.password + "notreallyhashed"
     db_account = Account(
         name=account.name,
@@ -44,7 +46,9 @@ def delete_account(db: Session, account_id: int):
 
 
 def update_account(
-    db: Session, account_id: int, account: schemas.account_schemas.AccountUpdate
+    db: Session,
+    account_id: int,
+    account: schemas.account_schemas.AccountUpdate,
 ):
     db_account = get_account(db, account_id)
     if db_account:

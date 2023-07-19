@@ -14,7 +14,7 @@ class AccountCreate(BaseModel):
 
     class Config:
         orm_mode = True
-        json_schema_extra = {
+        schema_extra = {
             "example": {
                 "name": "Antantas",
                 "surname": "Fontanas",

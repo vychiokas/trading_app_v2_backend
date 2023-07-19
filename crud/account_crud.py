@@ -1,25 +1,25 @@
 from sqlalchemy.orm import Session
 from sqlalchemy.orm.exc import NoResultFound
-
+from typing import Optional, List
 from models.account import Account
 import schemas.account_schemas
 
 
-def get_account(db: Session, account_id: int):
+def get_account(db: Session, account_id: int) -> Account:
     return db.query(Account).filter(Account.id == account_id).first()
 
 
-def get_account_by_email(db: Session, email: str):
+def get_account_by_email(db: Session, email: str) -> Optional[Account]:
     return db.query(Account).filter(Account.email == email).first()
 
 
-def get_accounts(db: Session):
+def get_accounts(db: Session) -> List[Account]:
     return db.query(Account).all()
 
 
 def create_account(
     db: Session, account: schemas.account_schemas.AccountCreate
-):
+) -> Account:
     fake_hashed_password = account.password + "notreallyhashed"
     db_account = Account(
         name=account.name,
@@ -35,7 +35,7 @@ def create_account(
     return db_account
 
 
-def delete_account(db: Session, account_id: int):
+def delete_account(db: Session, account_id: int) -> Optional[Account]:
     account = get_account(db, account_id)
     if account:
         db.delete(account)
@@ -49,7 +49,7 @@ def update_account(
     db: Session,
     account_id: int,
     account: schemas.account_schemas.AccountUpdate,
-):
+) -> Optional[Account]:
     db_account = get_account(db, account_id)
     if db_account:
         account_data = account.dict(exclude_unset=True)

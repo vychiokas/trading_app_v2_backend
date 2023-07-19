@@ -52,7 +52,7 @@ def update_account(
 ) -> Optional[Account]:
     db_account = get_account(db, account_id)
     if db_account:
-        account_data = account.dict(exclude_unset=True)
+        account_data = account.model_dump(exclude_unset=True)
         for key, value in account_data.items():
             setattr(db_account, key, value)
         db.commit()

@@ -34,7 +34,7 @@ Backend:
     1. POST - Creates new user
     2. GET with <id> gets user by id
     3. GET with <email> gets user by email
-    4. PUT with id updates user information
+    4. PATCH with id updates user information
     5. DELETE deletes user
 
 3. Ability to manipulate cash to account.

@@ -1,4 +1,5 @@
 from sqlalchemy import Boolean, Column, Integer, String, DateTime
+from sqlalchemy.orm import relationship
 
 from database.db import Base
 
@@ -14,3 +15,6 @@ class Account(Base):
     birthdate = Column(DateTime)
     phone_number = Column(String)
     is_active = Column(Boolean, default=True)
+
+    transactions = relationship("AccountCashTransaction",
+                                back_populates="transactions")

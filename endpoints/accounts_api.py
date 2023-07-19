@@ -4,7 +4,7 @@ from sqlalchemy.orm.exc import NoResultFound
 
 from database.db import get_db
 import crud.account_crud
-from schemas.account_schemas import AccountCreate, AccountResponse
+from schemas.account_schemas import AccountCreate, AccountResponse, AccountUpdate
 
 
 router = APIRouter()
@@ -40,3 +40,19 @@ def delete_account(account_id: int, db: Session = Depends(get_db)):
         return db_account
     except NoResultFound:
         raise HTTPException(status_code=404, detail=f"account {account_id} not found")
+
+
+@router.patch("/{account_id}", response_model=AccountUpdate)
+def update_account(
+    account_id: int, account: AccountUpdate, db: Session = Depends(get_db)
+):
+    print(123)
+    try:
+        db_account = crud.account_crud.update_account(
+            db, account_id=account_id, account=account
+        )
+        return db_account
+    except NoResultFound:
+        raise HTTPException(
+            status_code=404, detail=f"account {account_id} couldn't be updated!"
+        )

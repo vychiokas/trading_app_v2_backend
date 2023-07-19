@@ -42,5 +42,15 @@ def delete_account(db: Session, account_id: int):
         raise NoResultFound
 
 
-def update_account():
-    pass
+def update_account(
+    db: Session, account_id: int, account: schemas.account_schemas.AccountUpdate
+):
+    db_account = get_account(db, account_id)
+    if db_account:
+        account_data = account.dict(exclude_unset=True)
+        for key, value in account_data.items():
+            setattr(db_account, key, value)
+        db.commit()
+        return db_account
+    else:
+        raise NoResultFound

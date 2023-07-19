@@ -21,9 +21,9 @@ class AccountCreate(BaseModel):
                 "email": "antantas123@gmail.com",
                 "password": "1234",
                 "birthdate": "2023-07-11T18:08:57.215Z",
-                "phone_number": "123456"
-                }
+                "phone_number": "123456",
             }
+        }
 
 
 class AccountResponse(BaseModel):
@@ -34,7 +34,7 @@ class AccountResponse(BaseModel):
     password: str
     birthdate: datetime
     phone_number: Optional[str]
-    
+
     class Config:
         orm_mode = True
         json_schema_extra = {
@@ -45,9 +45,9 @@ class AccountResponse(BaseModel):
                 "email": "antantas123@gmail.com",
                 "password": "1234",
                 "birthdate": "2023-07-11T18:08:57.215Z",
-                "phone_number": "123456"
-                }
+                "phone_number": "123456",
             }
+        }
 
 
 class AccountUpdate(BaseModel):
@@ -67,6 +67,6 @@ class AccountUpdate(BaseModel):
                 "email": "antantas123@gmail.com",
                 "password": "1234",
                 "birthdate": "2023-07-11T18:08:57.215Z",
-                "phone_number": "123456"
-                }
+                "phone_number": "123456",
             }
+        }

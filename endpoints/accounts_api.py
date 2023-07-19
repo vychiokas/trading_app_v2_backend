@@ -35,8 +35,7 @@ def read_account(account_id: int, db: Session = Depends(get_db)):
 @router.delete("/{account_id}", response_model=AccountResponse)
 def delete_account(account_id: int, db: Session = Depends(get_db)):
     try:
-        db_account = crud.account_crud.delete_account(db,
-                                                      account_id=account_id)
+        db_account = crud.account_crud.delete_account(db, account_id=account_id)
         return db_account
     except NoResultFound:
         raise HTTPException(status_code=404, detail=f"account {account_id} not found")

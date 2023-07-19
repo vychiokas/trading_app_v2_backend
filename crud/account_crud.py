@@ -19,13 +19,14 @@ def get_accounts(db: Session):
 
 def create_account(db: Session, account: schemas.account_schemas.AccountCreate):
     fake_hashed_password = account.password + "notreallyhashed"
-    db_account = Account(name=account.name,
-                         surname=account.surname,
-                         email=account.email,
-                         password=fake_hashed_password,
-                         birthdate=account.birthdate,
-                         phone_number=account.phone_number
-                         )
+    db_account = Account(
+        name=account.name,
+        surname=account.surname,
+        email=account.email,
+        password=fake_hashed_password,
+        birthdate=account.birthdate,
+        phone_number=account.phone_number,
+    )
     db.add(db_account)
     db.commit()
     db.refresh(db_account)

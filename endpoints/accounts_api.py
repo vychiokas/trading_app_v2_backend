@@ -35,7 +35,7 @@ def read_account(account_id: int, db: Session = Depends(get_db)):
     db_account = crud.account_crud.get_account(db, account_id=account_id)
     if db_account is None:
         raise HTTPException(
-            status_code=404, detail=f"account {account_id} not found"
+            status_code=404, detail=f"Account {account_id} not found"
         )
     return db_account
 

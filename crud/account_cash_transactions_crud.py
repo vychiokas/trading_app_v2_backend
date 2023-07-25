@@ -35,3 +35,13 @@ def get_transactions(db: Session, account_id: int) -> List[AccountCashTransactio
         .filter(AccountCashTransaction.account_id == account_id)
         .all()
     )
+
+
+def get_balance(db: Session, account_id: int) -> float:
+    balance = 0
+    cash_transactions = (
+        db.query(AccountCashTransaction).filter(account_id == account_id).all()
+    )
+    for transaction in cash_transactions:
+        balance += transaction.amount
+    return balance

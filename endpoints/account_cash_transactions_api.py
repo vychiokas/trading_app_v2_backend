@@ -7,6 +7,7 @@ import crud.account_cash_transactions_crud, crud.account_crud
 from schemas.account_cash_transaction_schemas import (
     AccountCashTransactionCreate,
     AccountCashTransactionResponse,
+    BalanceResponse,
 )
 
 
@@ -38,3 +39,13 @@ def create_transaction(
         )
     else:
         HTTPException(status_code=404, detail=f"Account {account_id} not found")
+
+
+@router.get("/{account_id}/balance", response_model=BalanceResponse)
+def get_balance(account_id: int, db: Session = Depends(get_db)):
+    db_account = crud.account_crud.get_account(db, account_id)
+    if db_account:
+        amount = crud.account_cash_transactions_crud.get_balance(db, account_id)
+        return {"balance": amount}
+    else:
+        raise HTTPException(status_code=404, detail=f"Account {account_id} not found")

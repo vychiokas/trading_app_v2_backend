@@ -36,3 +36,7 @@ class AccountCashTransactionResponse(BaseModel):
                 "status": "TOP-UP",
             }
         }
+
+
+class BalanceResponse(BaseModel):
+    balance: float

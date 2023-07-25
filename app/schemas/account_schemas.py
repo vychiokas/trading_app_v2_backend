@@ -13,8 +13,8 @@ class AccountCreate(BaseModel):
     phone_number: Optional[str]
 
     class Config:
-        orm_mode = True
-        schema_extra = {
+        from_attributes = True
+        json_schema_extra = {
             "example": {
                 "name": "Antantas",
                 "surname": "Fontanas",
@@ -36,7 +36,7 @@ class AccountResponse(BaseModel):
     phone_number: Optional[str]
 
     class Config:
-        orm_mode = True
+        from_attributes = True
         json_schema_extra = {
             "example": {
                 "id": 1,
@@ -59,7 +59,7 @@ class AccountUpdate(BaseModel):
     phone_number: Optional[str]
 
     class Config:
-        orm_mode = True
+        from_attributes = True
         json_schema_extra = {
             "example": {
                 "name": "Antantas",

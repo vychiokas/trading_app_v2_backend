@@ -10,7 +10,7 @@ class AccountCashTransactionCreate(BaseModel):
     status: Literal["TOP-UP", "BUYING-SHARES", "SELLING-SHARES", "WITHDRAWAL"]
 
     class Config:
-        orm_mode = True
+        from_attributes = True
         json_schema_extra = {
             "example": {
                 "amount": 101.1,
@@ -27,7 +27,7 @@ class AccountCashTransactionResponse(BaseModel):
     status: Literal["TOP-UP", "BUYING-SHARES", "SELLING-SHARES", "WITHDRAWAL"]
 
     class Config:
-        orm_mode = True
+        from_attributes = True
         json_schema_extra = {
             "example": {
                 "id": 1,

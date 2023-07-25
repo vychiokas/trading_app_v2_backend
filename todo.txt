@@ -43,8 +43,17 @@ Backend:
         2. GET - with <account_id> return all account account_cash_transactions sort by creation_date: desc
         3. GET - with <account_id> get users cash balance
 
+
 4. Ability to go and do some trading.
+    stock_transactions
+
     1. create endpoint "stock/"
         GET <ticker> get ticker current price
-        POST "stock/sell/<account_id>/<ticker>"
-        POST "stock/buy/<account_id>/<ticker>"
+        POST "/stock" 
+        {
+            action: buy/sell,
+            quantity: int,
+            account_id: int
+        }
+        sell/buy, quantity, account_id
+        

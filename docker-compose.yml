@@ -1,6 +1,6 @@
 version: "3.9"
 services:
-  gf-api:
+  trading-app-backend:
     container_name: trading_app_backend
     build:
       context: .

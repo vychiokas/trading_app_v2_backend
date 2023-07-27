@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from endpoints import accounts_api, account_cash_transactions_api
+from endpoints import accounts_api, account_cash_transactions_api, stocks_api
 
 
 api_router = APIRouter()
@@ -11,3 +11,4 @@ api_router.include_router(
     prefix="/account_cash_transactions",
     tags=["account_cash_transactions"],
 )
+api_router.include_router(stocks_api.router, prefix="/stocks", tags=["stocks"])

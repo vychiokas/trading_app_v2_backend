@@ -4,11 +4,16 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 
 
-class AccountCashTransaction(Base):
-    __tablename__ = "account_cash_transaction"
+class StockTransaction(Base):
+    __tablename__ = "stock_transactions"
     id = Column(Integer, primary_key=True, index=True)
-    amount = Column(Float)
+    ticker = Column(String)
+    action = Column(String)
     creation_date = Column(DateTime(timezone=True), server_default=func.now())
-    status = Column(String)
+    quantity = Column(Integer)
+    stock_price = Column(Float)
     account_id = Column(Integer, ForeignKey("accounts.id"))
+    account_cash_transaction_id = Column(Integer, ForeignKey("account_cash_transaction.id"))
+    
     account = relationship("Account")
+    account_cash_transaction = relationship("AccountCashTransaction")

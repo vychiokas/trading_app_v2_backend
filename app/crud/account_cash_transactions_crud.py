@@ -1,10 +1,10 @@
-from sqlalchemy.orm import Session
-from sqlalchemy.orm.exc import NoResultFound
-from typing import Optional, List
+from typing import List, Optional
 
-from models.account_cash_transactions import AccountCashTransaction
 import schemas.account_cash_transaction_schemas
 from crud.account_crud import get_account
+from models.account_cash_transactions import AccountCashTransaction
+from sqlalchemy.orm import Session
+from sqlalchemy.orm.exc import NoResultFound
 
 
 def create_transaction(
@@ -16,7 +16,6 @@ def create_transaction(
     if db_account:
         db_account_cash_transaction = AccountCashTransaction(
             amount=account_cash_transaction.amount,
-            creation_date=account_cash_transaction.creation_date,
             status=account_cash_transaction.status,
         )
 

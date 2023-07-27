@@ -1,7 +1,5 @@
+from endpoints import account_cash_transactions_api, accounts_api, stocks_api
 from fastapi import APIRouter
-
-from endpoints import accounts_api, account_cash_transactions_api, stocks_api
-
 
 api_router = APIRouter()
 

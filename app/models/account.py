@@ -1,7 +1,6 @@
-from sqlalchemy import Boolean, Column, Integer, String, DateTime
-from sqlalchemy.orm import relationship
-
 from database.db import Base
+from sqlalchemy import Boolean, Column, DateTime, Integer, String
+from sqlalchemy.orm import relationship
 
 
 class Account(Base):

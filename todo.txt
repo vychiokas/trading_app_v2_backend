@@ -56,4 +56,3 @@ Backend:
             account_id: int
         }
         sell/buy, quantity, account_id
-        

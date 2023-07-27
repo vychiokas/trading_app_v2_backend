@@ -1,8 +1,9 @@
+from typing import List, Optional
+
+import schemas.account_schemas
+from models.account import Account
 from sqlalchemy.orm import Session
 from sqlalchemy.orm.exc import NoResultFound
-from typing import Optional, List
-from models.account import Account
-import schemas.account_schemas
 
 
 def get_account(db: Session, account_id: int) -> Account:
